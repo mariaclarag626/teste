@@ -1,4 +1,4 @@
-import { useFavorites } from '../../context/FavoritesContext';
+import { useFavorites } from '../../context/FavoritesContext.jsx';
 
 const PostCard = ({ item }) => {
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();

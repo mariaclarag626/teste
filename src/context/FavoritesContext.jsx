@@ -1,29 +1,29 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-const FavoritesContext = createContext();
+// Criando o contexto
+const FavoritosContext = createContext();
 
-export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
+// Provider = responsável por armazenar e compartilhar os dados
+export const FavoritosProvider = ({ children }) => {
+  const [favoritos, setFavoritos] = useState([]);
 
-  const addFavorite = (item) => {
-    if (!favorites.some((fav) => fav.id === item.id)) {
-      setFavorites([...favorites, item]);
+  // Alterna entre adicionar e remover o item da lista de favoritos
+  const toggleFavorito = (item) => {
+    const jaExiste = favoritos.some((fav) => fav.id === item.id);
+
+    if (jaExiste) {
+      setFavoritos(favoritos.filter((fav) => fav.id !== item.id));
+    } else {
+      setFavoritos([...favoritos, item]);
     }
   };
 
-  const removeFavorite = (id) => {
-    setFavorites(favorites.filter((item) => item.id !== id));
-  };
-
-  const isFavorite = (id) => {
-    return favorites.some((item) => item.id === id);
-  };
-
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
+    <FavoritosContext.Provider value={{ favoritos, toggleFavorito }}>
       {children}
-    </FavoritesContext.Provider>
+    </FavoritosContext.Provider>
   );
 };
 
-export const useFavorites = () => useContext(FavoritesContext);
+// Hook personalizado para usar o contexto
+export const useFavoritos = () => useContext(FavoritosContext);
