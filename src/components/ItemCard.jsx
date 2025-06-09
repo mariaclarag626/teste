@@ -1,10 +1,10 @@
 import React from 'react';
-import { useFavoritos } from '../context/FavoritosContext';
+import { useFavorites } from '../context/FavoritesContext';
 
 const ItemCard = ({ item }) => {
-  const { favoritos, toggleFavorito } = useFavoritos();
+  const { favorites, toggleFavorite } = useFavorites();
 
-  const isFavorito = favoritos.some((fav) => fav.id === item.id);
+  const isFavorite = favorites.some((fav) => fav.id === item.id);
 
   return (
     <div className="border p-4 rounded shadow bg-white">
@@ -12,12 +12,12 @@ const ItemCard = ({ item }) => {
       <p className="text-gray-700 mb-4">{item.descricao}</p>
 
       <button
-        onClick={() => toggleFavorito(item)}
+        onClick={() => toggleFavorite(item)}
         className={`px-4 py-2 rounded text-white ${
-          isFavorito ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
+          isFavorite ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
         }`}
       >
-        {isFavorito ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
+        {isFavorite ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
       </button>
     </div>
   );

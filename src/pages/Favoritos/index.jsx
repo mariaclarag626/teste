@@ -1,7 +1,7 @@
 import { useFavorites } from '../../context/FavoritesContext';
 import PostCard from '../../components/main/postcard';
 
-const Favoritos = () => {
+const Favorites = () => {
   const { favorites } = useFavorites();
 
   return (
@@ -20,9 +20,4 @@ const Favoritos = () => {
   );
 };
 
-
-
-
-export default Favoritos;
-
-
+export default Favorites;
